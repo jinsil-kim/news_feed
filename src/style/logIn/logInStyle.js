@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LogInDiv = styled.div`
+export const AuthDiv = styled.div`
   background-image: url('https://cdn.pixabay.com/photo/2020/01/21/11/39/running-4782722_1280.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,6 +11,14 @@ export const LogInDiv = styled.div`
   justify-content: space-evenly;
 `;
 
+export const Title = styled.div`
+  color: white;
+  font-size: 30px;
+  font-weight: 900;
+  position: fixed;
+  left: 80px;
+  top: 50px;
+`;
 export const SloganDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,7 +26,6 @@ export const SloganDiv = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
-  margin-left: 150px;
 
   h1 {
     font-size: 128px;
@@ -55,5 +62,24 @@ export const FormDiv = styled.div`
   }
   div {
     display: contents;
+  }
+  label {
+    display: flex;
+  }
+  input {
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    padding: 10px;
+    background-color: transparent;
+    margin: 10px;
+    color: white;
+    &:focus {
+      border-bottom: 2px solid #41503e;
+    }
+  }
+  .icon {
+    margin-top: 15px;
+    font-size: 30px;
   }
 `;
