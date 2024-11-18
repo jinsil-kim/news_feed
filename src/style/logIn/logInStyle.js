@@ -75,7 +75,7 @@ export const FormDiv = styled.div`
     margin: 10px;
     color: white;
     &:focus {
-      border-bottom: 2px solid #41503e;
+      border-bottom: 1px solid #89a448;
     }
   }
   .icon {
