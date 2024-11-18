@@ -28,7 +28,7 @@ const Sidebar = () => {
             <StyledLink onClick={() => navigate('/create-post')}>New Feed</StyledLink>
           </NavItem>
           <NavItem>
-            <StyledLink onClick={() => navigate('/profile')}>My Page</StyledLink>
+            <StyledLink onClick={() => navigate('/mypage')}>My Page</StyledLink>
           </NavItem>
         </NavList>
       </SidebarContent>
