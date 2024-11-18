@@ -5,12 +5,10 @@ import SignUpPage from '../pages/SignUpPage';
 import HomePage from '../pages/HomePage';
 
 import PostCreationPage from '../pages/PostCreationPage';
-import Sidebar from '../components/sidebar/Sidebar';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Sidebar />
       <Routes>
         <Route path="/" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
