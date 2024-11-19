@@ -1,10 +1,9 @@
-
-import { ContentDiv, FeedDiv, HomeDiv, Section } from '../../style/Home/homeStyle';
+import { ContentDiv, FeedDiv, HomeDiv, HomeSection } from '../../style/Home/homeStyle';
 
 const Feed = ({ post }) => {
   return (
     <>
-      <Section>
+      <HomeSection>
         <HomeDiv>
           <img src={post.user_img} alt="" />
           <h3>{post.user_name}</h3>
@@ -16,7 +15,7 @@ const Feed = ({ post }) => {
           <p>{post.content}</p>
           <span>{post.tag}</span>
         </ContentDiv>
-      </Section>
+      </HomeSection>
     </>
   );
 };

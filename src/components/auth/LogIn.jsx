@@ -5,11 +5,12 @@ import { PiUserCircleLight } from 'react-icons/pi';
 import { FormDiv, SloganDiv, Title, AuthDiv } from '../../style/logIn/logInStyle';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../../supabase/supabaseClient';
 
 const LogIn = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const navi = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -17,6 +18,19 @@ const LogIn = () => {
 
   const hadlePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const logInUser = async (e) => {
+    e.preventDefault();
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
+    if (error) {
+      alert('비밀번호가 틀렸습니다. 다시 입력해주세요');
+    } else if (data) {
+      navigate('/home');
+    }
   };
 
   return (
@@ -30,7 +44,7 @@ const LogIn = () => {
         </SloganDiv>
         <FormDiv>
           <PiUserCircleLight style={{ fontSize: '160px' }} />
-          <form>
+          <form onSubmit={logInUser}>
             <label htmlFor="email">
               <MdOutlineMail className="icon" />
               <input type="email" id="email" placeholder="Email ID" onChange={handleEmail} />
@@ -39,17 +53,16 @@ const LogIn = () => {
               <MdLockOutline className="icon" />
               <input type="password" id="password" placeholder="Password" onChange={hadlePassword} />
             </label>
+            <div>
+              <Button padding="15px 60px">LOGIN</Button>
+              <Button padding="15px 46px" type="button" onClick={() => navigate('/signup')}>
+                계정 만들기
+              </Button>
+            </div>
           </form>
-          <div>
-            <Button padding="15px 60px">LOGIN</Button>
-            <Button padding="15px 46px" onClick={() => navi('/signup')}>
-              계정 만들기
-            </Button>
-          </div>
         </FormDiv>
       </AuthDiv>
     </>
   );
 };
-
 export default LogIn;

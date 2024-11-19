@@ -1,10 +1,13 @@
-import React from 'react'
-import UpdateProfile from '../components/userData/UpdateProfile'
+import UpdateProfile from '../components/updataProfile/UpdateProfile';
+import Sidebar from '../components/sidebar/Sidebar';
 
 const UpdateProfilepage = () => {
   return (
-    <UpdateProfile/>
-  )
-}
+    <>
+      <Sidebar />
+      <UpdateProfile />
+    </>
+  );
+};
 
-export default UpdateProfilepage
+export default UpdateProfilepage;

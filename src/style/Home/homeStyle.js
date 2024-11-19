@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Section = styled.section`
+export const HomeSection = styled.section`
   left: 450px;
   position: relative;
   margin: 50px 0 80px 0;
@@ -14,9 +14,9 @@ export const HomeDiv = styled.div`
   margin-bottom: 30px;
   img {
     border-radius: 50%;
-    width: 90px; // 부모 요소의 너비에 맞게 조정
-    height: 90px; // 원하는 최대 높이 설정
-    object-fit: cover; // 비율을 유지하면서 잘라내기
+    width: 90px; 
+    height: 90px; 
+    object-fit: cover; 
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   }
   h3 {

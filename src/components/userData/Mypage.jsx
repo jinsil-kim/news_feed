@@ -1,162 +1,84 @@
 import { AiOutlineUser } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
-const MyPageContainer = styled.div`
-  /* 정렬을 쉽게 도와주는 css */
-  /* 안에 있는 태그들이 좌우로 정렬됨 */
-  display: flex;
-`
+import { supabase } from '../../supabase/supabaseClient';
+import { useState, useEffect } from 'react';
+import MyFeed from './MyFeed';
+import {
+  Circle,
+  CircleContainer,
+  MyPageContainer,
+  ProfileSettingButton,
+  UserContainer,
+  UserProfileImg,
+  UserText,
+  WrapUserData
+} from '../../style/mypage';
 
-// TODO: Sidebar는 추후에 다른 사람 걸로 교체
-const Sidebar = styled.div`
-  width: 400px;
-  height: 100vh;
-  border-right: 1px solid gray;
-`
-
-const UserContainer = styled.div`
-  flex: 1;
-`
-
-// 유저 프로필 사진이 올라갈 수 있는 사이클 도형 생성
-const CircleContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding:40px 1em 3em 15em;
-  border-bottom: 1px solid gray;
-`;
-const Circle = styled.div`
-  width: 150px;
-  height: 150px;
-  border: 1px solid gray;
-  border-radius: 50%;
-  box-shadow: 1px 3px 4px 0px gray;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  font-size:50px;
-`;
-const UserText = styled.label`
-  margin-left: 15px;
-  font-size: 50px;
-  color: black;
-  cursor: pointer;
-`;
-// 업로딩 되는 영역
-const WrapUserData = styled.div`
-    width: 400px;
-    height: 500px;
-`
-// 버튼 스타일링
-const ProfileSettingButton = styled.button`
-  background-color: black;
-  color: white;
-  border: none;
-  margin-left: 40px;
-  border-radius: 15px;
-  width: 100px;
-  height: 30px;
-`;
-// 하단부 이미지 프로필 사진 영역 
-const MiniCircle = styled.div`
-    width: 80px;
-    height: 80px;
-    border: 1px solid gray;
-    border-radius: 50%;
-    margin: 20px auto;
-    transition: background-color 0.3s ease;
-    margin-left:20px;
-    &:hover {
-      transform: scale(1.05); // 크기 확대
-    }
-    box-shadow: 1px 1px 1px 1px gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    `
-    const InfoContainer = styled.div`
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid gray;
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  `;
-
-  const InfoItem = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-
-    &:last-child {
-      border-bottom: none;
-    }
-  `;
-
-  const InfoLabel = styled.span`
-    font-size: 18px;
-    font-weight: 600;
-  `;
+// TODO:
+// 1. 현재 로그인한 유저 정보를 가져온다  -> 지금 할 수가 없음 -> 로그인 기능이 합쳐진 이후에 할 수 있다. -> 로그인 기능 합친 후에 작성할 예정
+// 2. 유저 정보의 id를 찾아 posts에서 해당 user_id와 일치하는 놈만 걸러서 가져온다.
 
 const Mypage = () => {
+  const [posts, setPosts] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const {
+        data: { user }
+      } = await supabase.auth.getUser();
+
+      setCurrentUser(user); // 현재 사용자 정보 저장
+    };
+
+    checkUser();
+  }, []);
+
+  useEffect(() => {
+    const fetchMyFeeds = async () => {
+      if (!currentUser) return;
+      const { data } = await supabase.from('posts').select('*').eq('user_id', currentUser.id);
+      setPosts(data);
+    };
+
+    fetchMyFeeds();
+  }, [currentUser]);
+
+  useEffect(() => {
+    const fetchMyInfo = async () => {
+      if (!currentUser) return;
+      // const { data: { user } } = await supabase.auth.getUser();
+      const { data } = await supabase.from('users').select('*').eq('id', currentUser.id);
+      if (data.length !== 0) {
+        setUserInfo(data[0]);
+      }
+    };
+
+    fetchMyInfo();
+  }, [currentUser]);
 
   return (
     <>
       <MyPageContainer>
-        <Sidebar />
-
         <UserContainer>
           <CircleContainer>
             <Circle>
-            <AiOutlineUser />
+              {userInfo?.profile_img ? <UserProfileImg src={userInfo?.profile_img} /> : <AiOutlineUser />}
             </Circle>
-            <UserText>user</UserText>
+            <UserText>{userInfo?.nickname}</UserText>
+            <UserText />
             <Link to={'/update'}>
-            <ProfileSettingButton>프로필 수정</ProfileSettingButton>
+              <ProfileSettingButton>프로필 수정</ProfileSettingButton>
             </Link>
           </CircleContainer>
 
-          
+          {posts.map((post) => (
+            <MyFeed key={post.id} post={post} />
+          ))}
           {/* 아래 사용자 데이터 표시 */}
-          <WrapUserData>
-            <MiniCircle>
-              <AiOutlineUser/>
-            </MiniCircle>
-
-
-          {/* USER, 게시글, 피드, 이미지 영역 */}
-          <InfoContainer>
-            <InfoItem>
-              <InfoLabel>USER</InfoLabel>
-            
-            </InfoItem>
-            <InfoItem>
-              <InfoLabel>게시글</InfoLabel>
-            
-            </InfoItem>
-            <InfoItem>
-              <InfoLabel>피드</InfoLabel>
-           
-            </InfoItem>
-            <InfoItem>
-              <InfoLabel>이미지</InfoLabel>
-             
-            </InfoItem>
-          </InfoContainer>
-
-
-
-
-
-
-          </WrapUserData>
+          <WrapUserData></WrapUserData>
         </UserContainer>
       </MyPageContainer>
     </>
