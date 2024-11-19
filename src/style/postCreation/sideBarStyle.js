@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const SideNav = styled.aside`
   position: fixed;
   top: 0;
-  left: -230px;
+  left: -180px;
   width: 250px;
   height: 100%;
-  background-color: white;
-  color: #000;
+  background-color: #28a745;
+  color: #fff;
   transition: left 0.3s ease;
   box-shadow: 3px 0 6px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -39,35 +39,47 @@ export const NavItem = styled.li`
 export const StyledLink = styled.div`
   text-decoration: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: color 0.3s;
   &:hover {
-    color: #28a745;
+    color: #000;
   }
 `;
 
 export const SidebarFooter = styled.div`
-  margin-top: 40px;
-  padding: 20px;
+  margin-top: 350px;
+  padding: 40px 17px;
   border-top: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  width: 100%;
   box-sizing: border-box;
 `;
 
 export const UserProfile = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-`;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
 
-export const ProfileImage = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
-`;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+  }
+  span {
+    font-size: 24px;
+    font-weight: 700;
+  }
 
-export const UserName = styled.span`
-  font-weight: bold;
+  &:hover {
+    color: black;
+
+    img {
+      filter: brightness(0.8);
+    }
+  }
 `;

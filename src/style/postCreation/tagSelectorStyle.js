@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const TagSelectorContainer = styled.div`
   width: 100%;
-  max-width: 630px;
+  max-width: 630px; /* 동일한 너비 설정 */
   margin-bottom: 50px;
 `;
 

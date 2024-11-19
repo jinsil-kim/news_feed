@@ -4,7 +4,7 @@ import { TagSelectorContainer, TagContainer, Tag, TagInput } from '../../style/p
 const TagSelector = ({ tags = [], onAddTag }) => {
   const [tagInput, setTagInput] = useState('');
 
-  // chatGPT 추천 컬러코드 -
+  // chatGPT 추천 컬러코드
   const tagColors = [
     '#FFB3BA',
     '#FFDFBA',
