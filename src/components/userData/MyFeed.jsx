@@ -2,6 +2,19 @@ import { supabase } from '../../supabase/supabaseClient';
 import { ButtonDiv, ContentDiv, ImageDiv, StyledLink } from '../../style/myFeedStyle/myPageStyle';
 import { Tag } from '../../style/postCreation/tagSelectorStyle';
 
+const tagColors = [
+  '#FFB3BA',
+  '#FFDFBA',
+  '#FFFFBA',
+  '#BAFFC9',
+  '#BAE1FF',
+  '#E0BBE4',
+  '#FFB7B2',
+  '#FFDAC1',
+  '#B5EAD7',
+  '#C7CEEA'
+];
+
 const MyFeed = ({ post, setPosts }) => {
   const deleteFeed = async () => {
     // 확인하는 절차
@@ -21,9 +34,11 @@ const MyFeed = ({ post, setPosts }) => {
       </ImageDiv>
       <ContentDiv>
         <p>{post.content}</p>
-        <ul>
-          <Tag color={post.tags.color}>{post.tags.join(' ')}</Tag>
-        </ul>
+        {post.tags.map((tag) => (
+          <Tag key={tag} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
+            {tag}
+          </Tag>
+        ))}
       </ContentDiv>
     </div>
   );

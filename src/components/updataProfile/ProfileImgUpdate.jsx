@@ -2,6 +2,7 @@ import { ImgDiv } from '../../style/upDate/updateStyle';
 import { Button } from '../../style/buttonStyle';
 
 const ProfileImgUpdate = ({ onUpLoad, img, handleDeleteImg }) => {
+  console.log('img', img);
   return (
     <div>
       <ImgDiv>

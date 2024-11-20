@@ -16,23 +16,18 @@ export const InputForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    outline: none;
-  }
 `;
 
 export const ContentInput = styled.textarea`
-  width: 600px;
+  width: 560px;
+  height: 80px;
   padding: 20px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
   resize: none;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 `;
 
 export const ImageDiv = styled.div`
@@ -48,26 +43,46 @@ export const ImageDiv = styled.div`
   }
   label {
     font-size: 20px;
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+    background-color: #01b7fb;
+    padding: 10px;
+    border-radius: 8px;
   }
 `;
 
 export const TagInputDiv = styled.div`
   font-size: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 10px;
-
+  input {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid gray;
+  }
   button {
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 15px;
-    width: 40%;
+    padding: 10px;
+  }
+`;
+
+export const TagDiv = styled.div`
+  font-size: 20px;
+  display: flex;
+  gap: 10px;
+  div {
+    display: flex;
   }
 `;
 
 export const FeedChangeButton = styled.button`
   margin-top: 10px;
-  padding: 15px 50px;
-  font-size: 20px;
+  padding: 10px 270px;
+  font-size: 18px;
   border-radius: 15px;
 `;

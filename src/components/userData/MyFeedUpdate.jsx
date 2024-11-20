@@ -7,9 +7,13 @@ import {
   FeedChangeButton,
   ImageDiv,
   InputForm,
+  TagDiv,
   TagInputDiv
 } from '../../style/myFeedStyle/myFeedUpdateStyle';
 import { FaFileImage } from 'react-icons/fa';
+import { DiLinux } from 'react-icons/di';
+import { ImFinder } from 'react-icons/im';
+import { IoCloseCircleOutline } from 'react-icons/io5';
 
 function MyFeedUpdate() {
   // url에서 id 가져오는 코드
@@ -102,13 +106,15 @@ function MyFeedUpdate() {
   return (
     <ContainerDiv>
       <InputForm>
-        <ContentInput placeholder="게시글 수정" value={content} onChange={onChangeContent} />
+        <div>
+          <ContentInput placeholder="게시글 수정" value={content} onChange={onChangeContent} />
+        </div>
         <ImageDiv>
           <img src={imgUrl} />
           <br />
           <label htmlFor="img-url">
-            <FaFileImage />
-            이미지 선택
+            <ImFinder />
+            Finder
           </label>
           <input type="file" id="img-url" style={{ display: 'none' }} onChange={handleImageUpload} />
         </ImageDiv>
@@ -117,16 +123,17 @@ function MyFeedUpdate() {
           <button type="button" onClick={onAddTag}>
             추가
           </button>
-          <br />
+        </TagInputDiv>
+        <TagDiv>
           {tags.map((tag, index) => (
             <div key={tag}>
               {tag}{' '}
               <label type="button" onClick={() => onDeleteTag(index)}>
-                X
+                <IoCloseCircleOutline style={{ color: 'red' }} />
               </label>
             </div>
           ))}
-        </TagInputDiv>
+        </TagDiv>
         <FeedChangeButton type="button" onClick={onSubmit}>
           피드 변경
         </FeedChangeButton>

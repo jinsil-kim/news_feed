@@ -20,9 +20,12 @@ const UpdateProfile = () => {
         console.log('Error fetching user data:', error.message); // 오류 로그 출력
         return;
       }
+      //프로필 url 가져오기ㅠㅠ
+      const { data: userData, error: userError } = await supabase.from('users').select().eq('id', data.user.id);
 
       console.log('Fetched user:', data.user); // 사용자 정보 출력
       setUsers(data.user); // 사용자 정보를 상태로 저장
+      setProfileUrl(userData[0].profile_img);
     };
 
     fetchUsers(); // 사용자 데이터를 가져오기 위해 함수 호출
@@ -56,13 +59,15 @@ const UpdateProfile = () => {
     const { data } = await uploadImage(file); // 이미지 업로드 후 URL 가져오기
     if (data.publicUrl) {
       setProfileUrl(data.publicUrl); // 업로드된 URL을 상태로 설정
-      await supabase.from("users").update({
-        profile_img: data.publicUrl
-      }).eq("id", users.id)
+      await supabase
+        .from('users')
+        .update({
+          profile_img: data.publicUrl
+        })
+        .eq('id', users.id);
     }
     event.target.value = null; // 파일 입력 초기화
   };
-
 
   // 이미지 삭제 핸들러
   const handleDeleteImg = async () => {
