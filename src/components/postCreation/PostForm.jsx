@@ -11,7 +11,7 @@ const PostForm = () => {
   const [image, setImage] = useState(null);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
