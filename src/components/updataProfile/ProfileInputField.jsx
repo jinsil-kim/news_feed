@@ -1,4 +1,4 @@
-import { InputDiv } from '../../style/upDate/updateStyle';
+import { InputDiv } from '../../style/update/updateStyle';
 import { Button } from '../../style/buttonStyle';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
