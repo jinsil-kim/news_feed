@@ -8,7 +8,8 @@ export const FormContainer = styled.div`
   border-radius: 10px;
   margin-bottom: 20px;
   width: 100%;
-  max-width: 590px;
+  max-width: 630px;
+  box-sizing: border-box;
 `;
 
 export const TextArea = styled.textarea`
@@ -18,4 +19,6 @@ export const TextArea = styled.textarea`
   width: 100%;
   height: 100px;
   font-size: 1em;
+  padding: 10px;
+  box-sizing: border-box;
 `;

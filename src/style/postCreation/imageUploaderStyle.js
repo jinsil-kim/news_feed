@@ -4,7 +4,7 @@ export const LabelImage = styled.label`
   cursor: pointer;
   display: block;
   width: 100%;
-  max-width: 630px;
+  max-width: 630px; /* 동일한 너비 설정 */
   height: 250px;
   border-radius: 10px;
   border: 2px solid #ccc;

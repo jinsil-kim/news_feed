@@ -42,6 +42,7 @@ export const StyledLink = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  transition: color 0.3s;
   &:hover {
     color: #000;
   }
@@ -64,6 +65,8 @@ export const UserProfile = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
 
   img {
     width: 40px;
@@ -74,5 +77,13 @@ export const UserProfile = styled.div`
   span {
     font-size: 24px;
     font-weight: 700;
+  }
+
+  &:hover {
+    color: black;
+
+    img {
+      filter: brightness(0.8);
+    }
   }
 `;
