@@ -9,7 +9,6 @@ import {
   InputForm,
   TagInputDiv
 } from '../../style/myFeedStyle/myFeedUpdateStyle';
-import { ContentDiv } from '../../style/myFeedStyle/myPageStyle';
 import { FaFileImage } from 'react-icons/fa';
 
 function MyFeedUpdate() {
