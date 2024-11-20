@@ -1,44 +1,119 @@
-import Feed from './Feed';
+import { useState, useEffect } from 'react';
+import { PostHomeDiv, PostContentDiv, PostFeedDiv } from '../../style/Home/homeStyle';
+import styled from 'styled-components';
+import { supabase } from '../../supabase/supabaseClient';
+
+const Content = styled.p`
+  margin-left: 125px;
+`;
+
+const Tags = styled.div`
+  margin-left: 125px;
+`;
 
 const Home = () => {
-  const posts = [
-    {
-      id: 1,
-      user_img:
-        'https://i.namu.wiki/i/7GmNjfJX-qYVLsmifPtiMkeaopawU9R4ccPVgx4aHs3VfYoMR_f8xcnxDR3cDo4WADgwCsxDJfrCsVPbROd70Q.webp', // 프로필 이미지
-      user_name: 'Alice Johnson', // 사용자 이름
-      feed_img:
-        'https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202410/03/cc929604-8e12-47c4-a0db-a948d7053e49.jpg', // 피드 이미지
-      content:
-        '피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1피드 내용 1',
-      tag: "수영" // 태그
-    },
+  const [posts, setPosts] = useState([]);
 
-    {
-      id: 2,
-      user_img: 'https://c.files.bbci.co.uk/DCE1/production/_104454565_mary-mcgowan_caught-in-the-act_00001294.jpg',
-      user_name: 'Bob Smith',
-      feed_img: 'https://cornerstonephysio.com/wp-content/uploads/2020/04/Swimming-Teen-Boy-1200x800-2.jpeg',
-      content: '피드 내용 2',
-      tag: 'swim'
-    },
-    {
-      id: 3,
-      user_img: 'https://animals.or.kr/api/files/thumbnails/1014-584ab2bc-b520-44c0-a18b-b7b48ce02174.jpg',
-      user_name: 'Charlie Brown',
-      feed_img: 'https://cdn.news.hidoc.co.kr/news/photo/201807/17281_41024_0455.jpg',
-      content: '피드 내용 3',
-      tag: 'yoga'
-    }
-  ];
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const { data, error } = await supabase.from('posts').select('*');
 
+        console.log(data);
+
+        if (error) {
+          throw new Error(error.message);
+        }
+
+        setPosts(data);
+      } catch (error) {
+        alert(`데이터 로드 실패: ${error.message}`);
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  console.log(posts);
   return (
     <div>
-      {posts.map((post) => (
-        <Feed key={post.id} post={post} />
-      ))}
+      <h1>Posts</h1>
+      <ul>
+        {posts.map((post) => (
+          <li
+            style={{
+              marginLeft: '300px'
+            }}
+            key={post.id}
+          >
+            <PostHomeDiv>
+              <UserProfile userId={post.user_id} />
+              <Content>{post.content}</Content>
+            </PostHomeDiv>
+            <Tags>
+              {post.tags.map((t) => (
+                <PostContentDiv key={t}>
+                  <span>{t}</span>
+                </PostContentDiv>
+              ))}
+            </Tags>
+            <PostFeedDiv>
+              <img src={post.img_url} />
+            </PostFeedDiv>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
 export default Home;
+
+const User = styled.div`
+  display: flex;
+
+  align-items: center;
+
+  gap: 24px;
+`;
+const ProfileImg = styled.img`
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+`;
+
+const Nickname = styled.h3`
+  font-size: 25px;
+`;
+
+function UserProfile({ userId }) {
+  const [nickName, setNickName] = useState('');
+  const [profileImage, setProfileImage] = useState('');
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data, error } = await supabase.from('users').select('nickname, profile_img').eq('id', userId);
+
+      if (error) {
+        console.error('Error fetching user data:', error);
+        return;
+      }
+
+      if (data.length > 0) {
+        setNickName(data[0].nickname);
+        setProfileImage(data[0].profile_img);
+      }
+    };
+
+    if (userId) {
+      fetchUser();
+    }
+  }, [userId]);
+
+  return (
+    <User>
+      <ProfileImg src={`${profileImage}`} alt="Profile" />
+      <Nickname> {nickName}</Nickname>
+    </User>
+  );
+}

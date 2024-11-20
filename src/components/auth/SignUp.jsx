@@ -1,7 +1,7 @@
 import { Button } from '../../style/buttonStyle';
-import { AuthDiv, Title } from '../../style/logIn/logInStyle';
+import { AuthDiv, Title } from '../../style/authStyle/longinStyle';
 import { MdLockOutline, MdOutlineFaceUnlock, MdOutlineLockPerson, MdOutlineMail } from 'react-icons/md';
-import { FormDiv2 } from '../../style/logIn/signUpStyle';
+import { FormDiv2 } from '../../style/authStyle/signupStyle';
 import { useState } from 'react';
 import { supabase } from '../../supabase/supabaseClient';
 import { useNavigate } from 'react-router-dom';

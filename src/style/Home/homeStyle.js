@@ -1,32 +1,22 @@
 import styled from 'styled-components';
 
-export const HomeSection = styled.section`
+export const Section = styled.section`
   left: 450px;
   position: relative;
   margin: 50px 0 80px 0;
   max-width: 1280px;
 `;
-    
-export const HomeDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 30px;
-  img {
-    border-radius: 50%;
-    width: 90px; 
-    height: 90px; 
-    object-fit: cover; 
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-  }
-  h3 {
-    font-size: 28px;
-  }
+
+export const PostHomeDiv = styled.div`
+  padding: 20px;
+  background-color: #fff;
+  margin-bottom: 40px;
 `;
 
-export const FeedDiv = styled.div`
-  margin-left: 100px;
+export const PostFeedDiv = styled.div`
+  margin-left: 125px;
   img {
+    text-align: left;
     width: 850px;
     height: 450px;
     object-fit: cover;
@@ -35,15 +25,14 @@ export const FeedDiv = styled.div`
   }
 `;
 
-export const ContentDiv = styled.div`
-  margin: 40px 0 30px 100px;
-  p {
-    font-size: 24px;
-    margin-bottom: 30px;
-    line-height: 1.5;
-  }
-  span {
-    font-size: 20px;
-    background-color: pink;
-  }
+export const PostContentDiv = styled.div`
+  display: inline-block;
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #555;
+  transition: background-color 0.3s ease;
 `;

@@ -2,7 +2,7 @@ import { MdOutlineMail } from 'react-icons/md';
 import { MdLockOutline } from 'react-icons/md';
 import { Button } from '../../style/buttonStyle';
 import { PiUserCircleLight } from 'react-icons/pi';
-import { FormDiv, SloganDiv, Title, AuthDiv } from '../../style/logIn/logInStyle';
+import { FormDiv, SloganDiv, Title, AuthDiv } from '../../style/authStyle/longinStyle';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../supabase/supabaseClient';
