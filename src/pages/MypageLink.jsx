@@ -1,10 +1,13 @@
-import React from 'react'
-import Mypage from '../components/userData/Mypage'
+import Mypage from '../components/userData/Mypage';
+import Sidebar from '../components/sidebar/Sidebar';
 
 const Mypagelink = () => {
   return (
-   <Mypage/>
-  )
-}
+    <>
+      <Sidebar />
+      <Mypage />
+    </>
+  );
+};
 
-export default Mypagelink
+export default Mypagelink;

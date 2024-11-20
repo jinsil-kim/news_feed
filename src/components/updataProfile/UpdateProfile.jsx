@@ -39,8 +39,8 @@ const UpdateProfile = () => {
       return null; // 실패 시 null 반환
     }
 
-    // 업로드된 파일의 공용 URL 가져오기
-    return supabase.storage.from('profile_img').getPublicUrl(data.path).publicUrl;
+    // 업로드된 파일의 공용 URL 가져오기 // 요기 로직 다시 확인
+    return supabase.storage.from('profile_img').getPublicUrl(data.path);
   };
 
   // 이미지 업로드 핸들러
@@ -53,12 +53,16 @@ const UpdateProfile = () => {
     reader.onload = () => setProfileUrl(reader.result); // 미리보기 URL 설정
     reader.readAsDataURL(file);
 
-    const imageUrl = await uploadImage(file); // 이미지 업로드 후 URL 가져오기
-    if (imageUrl) {
-      setProfileUrl(imageUrl); // 업로드된 URL을 상태로 설정
+    const { data } = await uploadImage(file); // 이미지 업로드 후 URL 가져오기
+    if (data.publicUrl) {
+      setProfileUrl(data.publicUrl); // 업로드된 URL을 상태로 설정
+      await supabase.from("users").update({
+        profile_img: data.publicUrl
+      }).eq("id", users.id)
     }
     event.target.value = null; // 파일 입력 초기화
   };
+
 
   // 이미지 삭제 핸들러
   const handleDeleteImg = async () => {

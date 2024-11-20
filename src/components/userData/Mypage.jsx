@@ -13,7 +13,7 @@ import {
   UserProfileImg,
   UserText,
   WrapUserData
-} from '../../style/mypage';
+} from '../../style/myFeedStyle/myPageStyle';
 
 // TODO:
 // 1. 현재 로그인한 유저 정보를 가져온다  -> 지금 할 수가 없음 -> 로그인 기능이 합쳐진 이후에 할 수 있다. -> 로그인 기능 합친 후에 작성할 예정
@@ -29,7 +29,6 @@ const Mypage = () => {
       const {
         data: { user }
       } = await supabase.auth.getUser();
-
       setCurrentUser(user); // 현재 사용자 정보 저장
     };
 
@@ -73,12 +72,11 @@ const Mypage = () => {
               <ProfileSettingButton>프로필 수정</ProfileSettingButton>
             </Link>
           </CircleContainer>
-
-          {posts.map((post) => (
-            <MyFeed key={post.id} post={post} />
-          ))}
-          {/* 아래 사용자 데이터 표시 */}
-          <WrapUserData></WrapUserData>
+          <WrapUserData>
+            {posts.map((post) => (
+              <MyFeed key={post.id} post={post} setPosts={setPosts} />
+            ))}
+          </WrapUserData>
         </UserContainer>
       </MyPageContainer>
     </>
