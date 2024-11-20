@@ -75,9 +75,14 @@ export const TagDiv = styled.div`
   font-size: 20px;
   display: flex;
   gap: 10px;
-  div {
-    display: flex;
-  }
+`;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* 태그 간 간격 */
+  padding: 8px;
+  border: 1px solid #ccc;
 `;
 
 export const FeedChangeButton = styled.button`

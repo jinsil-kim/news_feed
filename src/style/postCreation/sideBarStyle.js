@@ -73,6 +73,7 @@ export const UserProfile = styled.div`
     height: 40px;
     border-radius: 50%;
     color: white;
+    object-fit: cover;
   }
   span {
     font-size: 24px;

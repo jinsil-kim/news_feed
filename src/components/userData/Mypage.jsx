@@ -38,7 +38,11 @@ const Mypage = () => {
   useEffect(() => {
     const fetchMyFeeds = async () => {
       if (!currentUser) return;
-      const { data } = await supabase.from('posts').select('*').eq('user_id', currentUser.id);
+      const { data } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('user_id', currentUser.id)
+        .order('created_at', { ascending: false });
       setPosts(data);
     };
 

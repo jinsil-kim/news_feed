@@ -1,10 +1,12 @@
 import { InputDiv } from '../../style/upDate/updateStyle';
 import { Button } from '../../style/buttonStyle';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileInputField = ({ updateNickname, updatePassword }) => {
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSave = () => {
     if (!nickname) {
@@ -27,6 +29,7 @@ const ProfileInputField = ({ updateNickname, updatePassword }) => {
     setNickname('');
     setPassword('');
     alert('프로필이 성공적으로 업데이트되었습니다!');
+    navigate('/mypage');
   };
 
   return (

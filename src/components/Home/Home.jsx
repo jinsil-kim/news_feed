@@ -10,12 +10,27 @@ import {
   Nickname
 } from '../../style/Home/homeStyle';
 import { supabase } from '../../supabase/supabaseClient';
+import { Tag } from '../../style/postCreation/tagSelectorStyle';
+
+const tagColors = [
+  '#FFB3BA',
+  '#FFDFBA',
+  '#FFFFBA',
+  '#BAFFC9',
+  '#BAE1FF',
+  '#E0BBE4',
+  '#FFB7B2',
+  '#FFDAC1',
+  '#B5EAD7',
+  '#C7CEEA'
+];
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data, error } = await supabase.from('posts').select('*');
+        const { data, error } = await supabase.from('posts').select('*').order('created_at', { ascending: false });
         console.log(data);
         if (error) {
           throw new Error(error.message);
@@ -30,7 +45,6 @@ const Home = () => {
   console.log(posts);
   return (
     <div>
-      <h1>Posts</h1>
       <ul>
         {posts.map((post) => (
           <li
@@ -44,13 +58,15 @@ const Home = () => {
               <PostFeedDiv>
                 <img src={post.img_url} />
                 <Content>{post.content}</Content>
-            <Tags>
-              {post.tags.map((t) => (
-                <PostContentDiv key={t}>
-                  <span>{t}</span>
-                </PostContentDiv>
-              ))}
-            </Tags>
+                <Tags>
+                  {post.tags.map((t) => (
+                    <PostContentDiv key={t}>
+                      <Tag key={t} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
+                        {t}
+                      </Tag>
+                    </PostContentDiv>
+                  ))}
+                </Tags>
               </PostFeedDiv>
             </PostHomeDiv>
           </li>
@@ -60,6 +76,7 @@ const Home = () => {
   );
 };
 export default Home;
+
 function UserProfile({ userId }) {
   const [nickName, setNickName] = useState('');
   const [profileImage, setProfileImage] = useState('');

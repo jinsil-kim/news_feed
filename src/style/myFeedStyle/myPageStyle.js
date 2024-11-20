@@ -31,7 +31,6 @@ export const CircleContainer = styled.div`
 export const Circle = styled.div`
   width: 150px;
   height: 150px;
-  border: 1px solid gray;
   border-radius: 50%;
   box-shadow: 1px 3px 4px 0px gray;
   display: flex;

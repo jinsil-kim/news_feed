@@ -23,14 +23,8 @@ export const PostFeedDiv = styled.div`
 `;
 export const PostContentDiv = styled.div`
   display: inline-block;
-  background-color: #f1f1f1;
   padding: 5px 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   border-radius: 20px;
-  font-size: 14px;
-  color: #555;
-  transition: background-color 0.3s ease;
 `;
 export const Content = styled.p`
   margin-top: 30px;
@@ -48,7 +42,9 @@ export const ProfileImg = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  object-fit: cover;
 `;
 export const Nickname = styled.h3`
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: 700;
 `;

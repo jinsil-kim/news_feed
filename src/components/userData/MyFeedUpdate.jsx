@@ -12,6 +12,20 @@ import {
 } from '../../style/myFeedStyle/myFeedUpdateStyle';
 import { ImFinder } from 'react-icons/im';
 import { IoCloseCircleOutline } from 'react-icons/io5';
+import { Tag } from '../../style/postCreation/tagSelectorStyle';
+
+const tagColors = [
+  '#FFB3BA',
+  '#FFDFBA',
+  '#FFFFBA',
+  '#BAFFC9',
+  '#BAE1FF',
+  '#E0BBE4',
+  '#FFB7B2',
+  '#FFDAC1',
+  '#B5EAD7',
+  '#C7CEEA'
+];
 
 function MyFeedUpdate() {
   // url에서 id 가져오는 코드
@@ -125,12 +139,12 @@ function MyFeedUpdate() {
           </TagInputDiv>
           <TagDiv>
             {tags.map((tag, index) => (
-              <div key={tag}>
+              <Tag key={tag} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
                 {tag}{' '}
                 <label type="button" onClick={() => onDeleteTag(index)}>
                   <IoCloseCircleOutline style={{ color: 'red' }} />
                 </label>
-              </div>
+              </Tag>
             ))}
           </TagDiv>
           <FeedChangeButton type="button" onClick={onSubmit}>

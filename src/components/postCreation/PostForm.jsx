@@ -6,12 +6,14 @@ import TagSelector from './TagSelector';
 import { Container } from '../../style/postCreation/postFormStyle';
 // supabase
 import { supabase } from '../../supabase/supabaseClient';
+import { useNavigate } from 'react-router-dom';
 
 const PostForm = () => {
   const [image, setImage] = useState(null);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState([]);
   const [user, setUser] = useState([]);
+  const nav = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -77,6 +79,7 @@ const PostForm = () => {
       setContent('');
       setTags([]);
       setImage(null);
+      nav('/mypage');
     }
 
     // 콘솔 출력 - 성공

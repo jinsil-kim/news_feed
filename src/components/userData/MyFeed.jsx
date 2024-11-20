@@ -34,11 +34,13 @@ const MyFeed = ({ post, setPosts }) => {
       </ImageDiv>
       <ContentDiv>
         <p>{post.content}</p>
-        {post.tags.map((tag) => (
-          <Tag key={tag} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
-            {tag}
-          </Tag>
-        ))}
+        <div style={{ display: 'flex', gap: '10px' }}>
+          {post.tags.map((tag) => (
+            <Tag key={tag} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
+              {tag}
+            </Tag>
+          ))}
+        </div>
       </ContentDiv>
     </div>
   );
