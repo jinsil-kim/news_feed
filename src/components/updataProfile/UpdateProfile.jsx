@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ProfileDiv, ProfileSection, TitleHeader } from '../../style/upDate/updateStyle';
+import { ProfileDiv, ProfileSection, TitleHeader } from '../../style/update/updateStyle';
 import ProfileImgUpdate from './ProfileImgUpdate';
 import ProfileInputField from './ProfileInputField';
 import { supabase } from '../../supabase/supabaseClient';
