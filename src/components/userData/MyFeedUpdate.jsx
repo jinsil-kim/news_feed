@@ -10,8 +10,6 @@ import {
   TagDiv,
   TagInputDiv
 } from '../../style/myFeedStyle/myFeedUpdateStyle';
-import { FaFileImage } from 'react-icons/fa';
-import { DiLinux } from 'react-icons/di';
 import { ImFinder } from 'react-icons/im';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 
@@ -104,41 +102,43 @@ function MyFeedUpdate() {
   };
 
   return (
-    <ContainerDiv>
-      <InputForm>
-        <div>
-          <ContentInput placeholder="게시글 수정" value={content} onChange={onChangeContent} />
-        </div>
-        <ImageDiv>
-          <img src={imgUrl} />
-          <br />
-          <label htmlFor="img-url">
-            <ImFinder />
-            Finder
-          </label>
-          <input type="file" id="img-url" style={{ display: 'none' }} onChange={handleImageUpload} />
-        </ImageDiv>
-        <TagInputDiv>
-          <input placeholder="태그 수정" onChange={onChangeTag} value={tag} />
-          <button type="button" onClick={onAddTag}>
-            추가
-          </button>
-        </TagInputDiv>
-        <TagDiv>
-          {tags.map((tag, index) => (
-            <div key={tag}>
-              {tag}{' '}
-              <label type="button" onClick={() => onDeleteTag(index)}>
-                <IoCloseCircleOutline style={{ color: 'red' }} />
-              </label>
-            </div>
-          ))}
-        </TagDiv>
-        <FeedChangeButton type="button" onClick={onSubmit}>
-          피드 변경
-        </FeedChangeButton>
-      </InputForm>
-    </ContainerDiv>
+    <>
+      <ContainerDiv>
+        <InputForm>
+          <div>
+            <ContentInput placeholder="게시글 수정" value={content} onChange={onChangeContent} />
+          </div>
+          <ImageDiv>
+            <img src={imgUrl} />
+            <br />
+            <label htmlFor="img-url">
+              <ImFinder />
+              Finder
+            </label>
+            <input type="file" id="img-url" style={{ display: 'none' }} onChange={handleImageUpload} />
+          </ImageDiv>
+          <TagInputDiv>
+            <input placeholder="태그 수정" onChange={onChangeTag} value={tag} />
+            <button type="button" onClick={onAddTag}>
+              추가
+            </button>
+          </TagInputDiv>
+          <TagDiv>
+            {tags.map((tag, index) => (
+              <div key={tag}>
+                {tag}{' '}
+                <label type="button" onClick={() => onDeleteTag(index)}>
+                  <IoCloseCircleOutline style={{ color: 'red' }} />
+                </label>
+              </div>
+            ))}
+          </TagDiv>
+          <FeedChangeButton type="button" onClick={onSubmit}>
+            피드 변경
+          </FeedChangeButton>
+        </InputForm>
+      </ContainerDiv>
+    </>
   );
 }
 
