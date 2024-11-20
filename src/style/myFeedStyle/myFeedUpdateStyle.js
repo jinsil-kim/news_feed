@@ -17,7 +17,6 @@ export const InputForm = styled.form`
   justify-content: center;
   align-items: center;
   input {
-    /* width: 100%; */
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;
@@ -26,14 +25,14 @@ export const InputForm = styled.form`
   }
 `;
 
-export const ContentInput = styled.input`
-  width: 50%;
-  height: 20%;
-  padding: 500px;
+export const ContentInput = styled.textarea`
+  width: 600px;
+  padding: 20px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
+  resize: none;
 `;
 
 export const ImageDiv = styled.div`
@@ -66,10 +65,9 @@ export const TagInputDiv = styled.div`
   }
 `;
 
-
-export const FeedChangeButton= styled.button`
-margin-top: 10px;
-padding: 15px 50px;
-font-size: 20px;
-border-radius: 15px;
-`
+export const FeedChangeButton = styled.button`
+  margin-top: 10px;
+  padding: 15px 50px;
+  font-size: 20px;
+  border-radius: 15px;
+`;

@@ -82,6 +82,7 @@ function MyFeedUpdate() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const { data, error } = await supabase
       .from('posts')
       .update({
@@ -126,7 +127,9 @@ function MyFeedUpdate() {
             </div>
           ))}
         </TagInputDiv>
-        <FeedChangeButton onClick={onSubmit}>피드 변경</FeedChangeButton>
+        <FeedChangeButton type="button" onClick={onSubmit}>
+          피드 변경
+        </FeedChangeButton>
       </InputForm>
     </ContainerDiv>
   );
