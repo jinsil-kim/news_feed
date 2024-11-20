@@ -1,4 +1,4 @@
-import { ImgDiv } from '../../style/upDate/updateStyle';
+import { ImgDiv } from '../../style/update/updateStyle';
 import { Button } from '../../style/buttonStyle';
 
 const ProfileImgUpdate = ({ onUpLoad, img, handleDeleteImg }) => {
