@@ -21,10 +21,10 @@ export const PostFeedDiv = styled.div`
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   }
 `;
-export const PostContentDiv = styled.div`
-  display: inline-block;
-  padding: 5px 10px;
-`;
+// export const PostContentDiv = styled.div`
+//   display: inline-block;
+//   padding: 5px 10px;
+// `;
 
 export const Content = styled.p`
   margin-top: 50px;
@@ -32,7 +32,10 @@ export const Content = styled.p`
 `;
 export const Tags = styled.div`
   margin-top: 60px;
+  display: flex;
+  gap: 10px;
 `;
+
 export const User = styled.div`
   display: flex;
   align-items: center;

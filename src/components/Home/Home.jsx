@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
   PostHomeDiv,
-  PostContentDiv,
   Content,
   User,
   ProfileImg,
@@ -49,11 +48,11 @@ const Home = () => {
                 <Content>{post.content}</Content>
                 <Tags>
                   {post.tags.map((t) => (
-                    <PostContentDiv key={t}>
+                    <div key={t}>
                       <Tag key={t} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
                         {t}
                       </Tag>
-                    </PostContentDiv>
+                    </div>
                   ))}
                 </Tags>
               </ImageDiv>

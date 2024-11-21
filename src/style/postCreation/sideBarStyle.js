@@ -44,7 +44,7 @@ export const StyledLink = styled.div`
   justify-content: space-between;
   transition: color 0.3s;
   &:hover {
-    color: #000;
+    color: #ffc107;
   }
 `;
 
@@ -81,7 +81,7 @@ export const UserProfile = styled.div`
   }
 
   &:hover {
-    color: black;
+    color: #ffc107;
 
     img {
       filter: brightness(0.8);
