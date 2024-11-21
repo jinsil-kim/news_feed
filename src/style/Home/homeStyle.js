@@ -24,14 +24,14 @@ export const PostFeedDiv = styled.div`
 export const PostContentDiv = styled.div`
   display: inline-block;
   padding: 5px 10px;
-  border-radius: 20px;
 `;
+
 export const Content = styled.p`
-  margin-top: 30px;
+  margin-top: 50px;
   font-size: 25px;
 `;
 export const Tags = styled.div`
-  margin-top: 30px;
+  margin-top: 60px;
 `;
 export const User = styled.div`
   display: flex;

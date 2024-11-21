@@ -13,19 +13,7 @@ import {
 import { ImFinder } from 'react-icons/im';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { Tag } from '../../style/postCreation/tagSelectorStyle';
-
-const tagColors = [
-  '#FFB3BA',
-  '#FFDFBA',
-  '#FFFFBA',
-  '#BAFFC9',
-  '#BAE1FF',
-  '#E0BBE4',
-  '#FFB7B2',
-  '#FFDAC1',
-  '#B5EAD7',
-  '#C7CEEA'
-];
+import { tagColors } from '../../style/tagColors';
 
 function MyFeedUpdate() {
   // url에서 id 가져오는 코드

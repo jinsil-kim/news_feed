@@ -2,28 +2,17 @@ import { useState, useEffect } from 'react';
 import {
   PostHomeDiv,
   PostContentDiv,
-  PostFeedDiv,
   Content,
-  Tags,
   User,
   ProfileImg,
-  Nickname
+  Nickname,
+  Tags
 } from '../../style/Home/homeStyle';
 import { supabase } from '../../supabase/supabaseClient';
 import { Tag } from '../../style/postCreation/tagSelectorStyle';
+import { tagColors } from '../../style/tagColors';
+import { ImageDiv } from '../../style/myFeedStyle/myPageStyle';
 
-const tagColors = [
-  '#FFB3BA',
-  '#FFDFBA',
-  '#FFFFBA',
-  '#BAFFC9',
-  '#BAE1FF',
-  '#E0BBE4',
-  '#FFB7B2',
-  '#FFDAC1',
-  '#B5EAD7',
-  '#C7CEEA'
-];
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -55,7 +44,7 @@ const Home = () => {
           >
             <PostHomeDiv>
               <UserProfile userId={post.user_id} />
-              <PostFeedDiv>
+              <ImageDiv>
                 <img src={post.img_url} />
                 <Content>{post.content}</Content>
                 <Tags>
@@ -67,7 +56,7 @@ const Home = () => {
                     </PostContentDiv>
                   ))}
                 </Tags>
-              </PostFeedDiv>
+              </ImageDiv>
             </PostHomeDiv>
           </li>
         ))}
@@ -76,6 +65,7 @@ const Home = () => {
   );
 };
 export default Home;
+
 
 function UserProfile({ userId }) {
   const [nickName, setNickName] = useState('');

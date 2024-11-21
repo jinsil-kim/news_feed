@@ -7,8 +7,6 @@ export const MyPageContainer = styled.div`
   width: 50vw;
 `;
 
-// TODO: Sidebar는 추후에 다른 사람 걸로 교체
-
 export const UserContainer = styled.div`
   position: relative;
   left: 150px;
@@ -112,14 +110,11 @@ export const ImageDiv = styled.div`
 `;
 
 export const ContentDiv = styled.div`
-  margin: 40px 0 30px 100px;
+  margin: 40px 100px ;
+  width: 850px;
   p {
     font-size: 24px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     line-height: 1.5;
-  }
-  span {
-    font-size: 18px;
-    //TODO: 태그부분은 로직 합치면 정은님이 구현 부탁드려요
   }
 `;

@@ -17,7 +17,7 @@ export const Tag = styled.span`
   color: black;
   padding: 5px 10px;
   border-radius: 5px;
-  font-size: 0.9em;
+  font-size: 18px;
 `;
 
 export const TagInput = styled.input`

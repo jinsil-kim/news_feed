@@ -1,22 +1,10 @@
 import { useState } from 'react';
 import { TagSelectorContainer, TagContainer, Tag, TagInput } from '../../style/postCreation/tagSelectorStyle';
+import { tagColors } from '../../style/tagColors';
 
 const TagSelector = ({ tags = [], onAddTag }) => {
   const [tagInput, setTagInput] = useState('');
 
-  // chatGPT 추천 컬러코드
-  const tagColors = [
-    '#FFB3BA',
-    '#FFDFBA',
-    '#FFFFBA',
-    '#BAFFC9',
-    '#BAE1FF',
-    '#E0BBE4',
-    '#FFB7B2',
-    '#FFDAC1',
-    '#B5EAD7',
-    '#C7CEEA'
-  ];
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && tagInput.trim() && tags.length < 5) {

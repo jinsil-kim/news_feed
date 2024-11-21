@@ -1,19 +1,7 @@
 import { supabase } from '../../supabase/supabaseClient';
 import { ButtonDiv, ContentDiv, ImageDiv, StyledLink } from '../../style/myFeedStyle/myPageStyle';
 import { Tag } from '../../style/postCreation/tagSelectorStyle';
-
-const tagColors = [
-  '#FFB3BA',
-  '#FFDFBA',
-  '#FFFFBA',
-  '#BAFFC9',
-  '#BAE1FF',
-  '#E0BBE4',
-  '#FFB7B2',
-  '#FFDAC1',
-  '#B5EAD7',
-  '#C7CEEA'
-];
+import { tagColors } from '../../style/tagColors';
 
 const MyFeed = ({ post, setPosts }) => {
   const deleteFeed = async () => {
