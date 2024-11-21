@@ -20,7 +20,7 @@ const UpdateProfile = () => {
         console.log('Error fetching user data:', error.message); // 오류 로그 출력
         return;
       }
-      //프로필 url 가져오기ㅠㅠ
+      //프로필 url 가져오기
       const { data: userData, error: userError } = await supabase.from('users').select().eq('id', data.user.id);
 
       console.log('Fetched user:', data.user); // 사용자 정보 출력

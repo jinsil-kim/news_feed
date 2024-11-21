@@ -2,22 +2,20 @@ import { ImgDiv } from '../../style/update/updateStyle';
 import { Button } from '../../style/buttonStyle';
 
 const ProfileImgUpdate = ({ onUpLoad, img, handleDeleteImg }) => {
-  console.log('img', img);
+  const handleDeleteConfirmation = () => {
+    if (window.confirm('정말로 이미지를 삭제하시겠습니까?')) {
+      handleDeleteImg();
+    }
+  };
+
   return (
     <div>
       <ImgDiv>
-        <img src={img} alt="" />
+        <img src={img || '/default-profile.png'} alt="" />
         <div>
-          <Button
-            fontSize="20px"
-            borderRadius="30px"
-            padding="10px 20px"
-            onClick={() => document.getElementById('image-upload').click()}
-          >
-            사진 변경
-          </Button>
+          <label htmlFor="image-upload">사진 변경</label>
           <input id="image-upload" type="file" accept="image/*" style={{ display: 'none' }} onChange={onUpLoad} />
-          <Button fontSize="20px" borderRadius="30px" padding="10px 30px" onClick={handleDeleteImg}>
+          <Button fontSize="20px" borderRadius="30px" padding="10px 30px" onClick={handleDeleteConfirmation}>
             삭제
           </Button>
         </div>

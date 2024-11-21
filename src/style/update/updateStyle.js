@@ -42,6 +42,19 @@ export const ImgDiv = styled.div`
     justify-content: space-between;
     width: 240px;
     display: flex;
+    align-items: center;
+  }
+  label {
+    background-color: black;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: #41503e;
+    }
   }
 `;
 
