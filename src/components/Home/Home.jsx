@@ -1,17 +1,10 @@
 import { useState, useEffect } from 'react';
-import {
-  PostHomeDiv,
-  Content,
-  User,
-  ProfileImg,
-  Nickname,
-  Tags
-} from '../../style/Home/homeStyle';
+import { PostHomeDiv, Content, User, ProfileImg, Nickname, Tags } from '../../style/Home/homeStyle';
 import { supabase } from '../../supabase/supabaseClient';
 import { Tag } from '../../style/postCreation/tagSelectorStyle';
 import { tagColors } from '../../style/tagColors';
 import { ImageDiv } from '../../style/myFeedStyle/myPageStyle';
-
+import dayjs from 'dayjs';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -42,7 +35,7 @@ const Home = () => {
             key={post.id}
           >
             <PostHomeDiv>
-              <UserProfile userId={post.user_id} />
+              <UserProfile userId={post.user_id} postCreatedAt={post.created_at} />
               <ImageDiv>
                 <img src={post.img_url} />
                 <Content>{post.content}</Content>
@@ -65,10 +58,12 @@ const Home = () => {
 };
 export default Home;
 
-
-function UserProfile({ userId }) {
+function UserProfile({ userId, postCreatedAt }) {
   const [nickName, setNickName] = useState('');
   const [profileImage, setProfileImage] = useState('');
+
+  const formattedDate = dayjs(postCreatedAt).format('YYYY년 MM월 DD일 HH:mm:ss');
+
   useEffect(() => {
     const fetchUser = async () => {
       const { data, error } = await supabase.from('users').select('nickname, profile_img').eq('id', userId);
@@ -85,10 +80,12 @@ function UserProfile({ userId }) {
       fetchUser();
     }
   }, [userId]);
+
   return (
     <User>
       <ProfileImg src={`${profileImage}`} alt="Profile" />
       <Nickname> {nickName}</Nickname>
+      <span>{formattedDate}</span>
     </User>
   );
 }

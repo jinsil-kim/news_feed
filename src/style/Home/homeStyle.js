@@ -40,6 +40,12 @@ export const User = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+  span {
+    color: #c7c7c7;
+    font-size: 14px;
+    position: absolute;
+    left: 1100px;
+  }
 `;
 export const ProfileImg = styled.img`
   width: 100px;
