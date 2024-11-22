@@ -15,7 +15,7 @@ import { AiOutlineHome, AiOutlinePlusSquare } from 'react-icons/ai';
 import { MdOutlineContactPage } from 'react-icons/md';
 import { RiUser5Line } from 'react-icons/ri';
 
-const Sidebar = () => {
+const Sidebar = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
@@ -36,7 +36,6 @@ const Sidebar = () => {
     fetchUserProfile();
   }, []);
 
-
   const logOutUser = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
@@ -47,45 +46,48 @@ const Sidebar = () => {
   };
 
   return (
-    <SideNav>
-      <SidebarContent>
-        <h2>WOD</h2>
-        <NavList>
-          <NavItem>
-            {/* "/연결할 페이지" 넣으면 됩니다. */}
-            <StyledLink onClick={() => navigate('/home')}>
-              Home
-              <AiOutlineHome />
-            </StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink onClick={() => navigate('/create-post')}>
-              New Feed
-              <AiOutlinePlusSquare />
-            </StyledLink>
-          </NavItem>
-          <NavItem>
-            <StyledLink onClick={() => navigate('/mypage')}>
-              My Page
-              <MdOutlineContactPage />
-            </StyledLink>
-          </NavItem>
-        </NavList>
-      </SidebarContent>
-      <SidebarFooter>
-        <UserProfile onClick={() => navigate('/update')}>
-          <span>{user?.nickname}</span>
-          {user?.profile_img ? (
-            <img src={user.profile_img} alt="프로필 이미지" />
-          ) : (
-            <RiUser5Line style={{ fontSize: '38px' }} />
-          )}
-        </UserProfile>
-        <Button padding="8px 12px" border-radius="5px" onClick={logOutUser}>
-          로그아웃
-        </Button>
-      </SidebarFooter>
-    </SideNav>
+    <>
+      <SideNav>
+        <SidebarContent>
+          <h2>WOD</h2>
+          <NavList>
+            <NavItem>
+              {/* "/연결할 페이지" 넣으면 됩니다. */}
+              <StyledLink onClick={() => navigate('/home')}>
+                Home
+                <AiOutlineHome />
+              </StyledLink>
+            </NavItem>
+            <NavItem>
+              <StyledLink onClick={() => navigate('/create-post')}>
+                New Feed
+                <AiOutlinePlusSquare />
+              </StyledLink>
+            </NavItem>
+            <NavItem>
+              <StyledLink onClick={() => navigate('/mypage')}>
+                My Page
+                <MdOutlineContactPage />
+              </StyledLink>
+            </NavItem>
+          </NavList>
+        </SidebarContent>
+        <SidebarFooter>
+          <UserProfile onClick={() => navigate('/update')}>
+            <span>{user?.nickname}</span>
+            {user?.profile_img ? (
+              <img src={user.profile_img} alt="프로필 이미지" />
+            ) : (
+              <RiUser5Line style={{ fontSize: '38px' }} />
+            )}
+          </UserProfile>
+          <Button padding="8px 12px" border-radius="5px" onClick={logOutUser}>
+            로그아웃
+          </Button>
+        </SidebarFooter>
+      </SideNav>
+      {children}
+    </>
   );
 };
 
