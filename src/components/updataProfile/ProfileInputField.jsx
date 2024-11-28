@@ -3,6 +3,8 @@ import { Button } from '../../style/buttonStyle';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// TODO: 닉네임에 기존 닉네임이 들어가지 않는 것 같네요. API로 불러온 후 넣어주면 좋겠습니다.
+// TODO: 비밀번호 변경이 필수라 불편하네요. 옵션으로 만들어주면 좋겠습니다.
 const ProfileInputField = ({ updateNickname, updatePassword }) => {
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');

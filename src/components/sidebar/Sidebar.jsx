@@ -17,6 +17,7 @@ import { RiUser5Line } from 'react-icons/ri';
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  // TODO: 유저 정보를 관리하는 state가 여기저기 쓰이고 있네요.
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Sidebar = () => {
         data: { user }
       } = await supabase.auth.getUser();
       if (user) {
+        // TODO: single() 메서드는 데이터가 없으면 에러를 반환합니다. 아마 try catch문을 사용해야 할 것 같습니다.
         const { data, error } = await supabase.from('users').select('nickname, profile_img').eq('id', user.id).single();
         if (error) {
           console.error('Failed to fetch user profile:', error);
@@ -35,7 +37,6 @@ const Sidebar = () => {
     };
     fetchUserProfile();
   }, []);
-
 
   const logOutUser = async () => {
     const { error } = await supabase.auth.signOut();

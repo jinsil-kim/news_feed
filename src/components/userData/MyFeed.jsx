@@ -24,6 +24,7 @@ const MyFeed = ({ post, setPosts }) => {
         <p>{post.content}</p>
         <div style={{ display: 'flex', gap: '10px' }}>
           {post.tags.map((tag) => (
+            // TODO: tagColors를 만드는 함수 분리하기
             <Tag key={tag} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
               {tag}
             </Tag>

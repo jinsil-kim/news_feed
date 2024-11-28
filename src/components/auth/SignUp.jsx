@@ -7,6 +7,14 @@ import { supabase } from '../../supabase/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  // TODO: useState의 초기값을 객체로 만들면 더 간결하게 만들 수 있습니다. 실제 회사에서도 거의 그 방식을 사용합니다.
+  // ex)
+  // const [values, setValues] = useState({
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  //   passwordConfirm: ''
+  // });
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,21 +56,27 @@ const SignUp = () => {
       return;
     }
 
-    const { data } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password
     });
-    console.log(data);
+    // TODO: 에러처리가 되어 있지 않아 사용자가 에러 발생 시 알 수 없음
+    if (error) return alert(`회원가입에 실패했습니다. ${error.message}`);
 
     // Users 테이블에 추가 데이터 저장
+    // TODO: supabase trigger를 활용하여 회원가입 시 자동으로 유저 정보를 넣게 바꿔봅시다.
     const { error: dbError } = await supabase
       .from('users')
       .upsert({
+        // TODO: upsert는 insert + update의 준말입니다. 데이터가 없으면 insert, 있으면 update를 합니다.
+        // 그런데 현재 상황에서 signup이기 때문에 굳이 upsert를 사용할 필요가 없습니다.
         id: data.user.id,
-        nickname: name
+        nicknam: name
       })
+      // TODO: single() 메서드는 데이터가 없으면 에러를 반환합니다. 아마 try catch문을 사용해야 할 것 같습니다. -> 이건 확인이 필요합니다.
+      // upsert 내의 column을 변경하여 일부러 에러를 발생시켜 테스트 해봐도 되겠네요.
+      // 또한 하나를 가져오는 로직인데 현재는 가져올 필요가 없어 빼도 될 것 같습니다.
       .single();
-
     if (dbError) throw dbError;
 
     alert('회원가입 성공!');

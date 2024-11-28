@@ -10,25 +10,25 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      try {
-        const { data, error } = await supabase.from('posts').select('*').order('created_at', { ascending: false });
-        console.log(data);
-        if (error) {
-          throw new Error(error.message);
-        }
-        setPosts(data);
-      } catch (error) {
-        alert(`데이터 로드 실패: ${error.message}`);
+      const { data, error } = await supabase.from('posts').select('*').order('created_at', { ascending: false });
+      // TODO: 불필요한 console.log 제거
+      console.log(data);
+
+      if (error) {
+        return alert(`데이터 로드 실패: ${error.message}`);
       }
+      setPosts(data);
     };
     fetchPosts();
   }, []);
+  // TODO: 불필요한 console.log 제거
   console.log(posts);
   return (
     <div>
       <ul>
         {posts.map((post) => (
           <li
+            // TODO: inline style보다 styled-components를 사용합시다.
             style={{
               marginLeft: '300px'
             }}
@@ -41,7 +41,10 @@ const Home = () => {
                 <Content>{post.content}</Content>
                 <Tags>
                   {post.tags.map((t) => (
+                    // TODO: 태그 이름이 동일한 것이 있으면 key가 겹친다는 warning이 뜹니다.
+                    // 태그 추가 시 태그 이름이 동일하지 않게 하거나, 이런 경우는 어쩔 수 없이 index를 이용하거나, 태그 내에 id를 추가할 수 있습니다.
                     <div key={t}>
+                      {/* TODO: color 에 들어있는 함수를 따로 빼서 재사용합시다. */}
                       <Tag key={t} color={tagColors[Math.floor(Math.random() * tagColors.length)]}>
                         {t}
                       </Tag>
@@ -83,6 +86,7 @@ function UserProfile({ userId, postCreatedAt }) {
 
   return (
     <User>
+      {/* TODO: profileImage가 없으면 기본 이미지를 띄워주는 것이 좋을 것 같습니다. */}
       <ProfileImg src={`${profileImage}`} alt="Profile" />
       <Nickname> {nickName}</Nickname>
       <span>{formattedDate}</span>

@@ -11,6 +11,7 @@ const ProfileImgUpdate = ({ onUpLoad, img, handleDeleteImg }) => {
   return (
     <div>
       <ImgDiv>
+        {/* TODO: default-profile.png는 어디에 있나요? */}
         <img src={img || '/default-profile.png'} alt="" />
         <div>
           <label htmlFor="image-upload">사진 변경</label>

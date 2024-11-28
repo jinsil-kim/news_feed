@@ -37,6 +37,7 @@ const Mypage = () => {
 
   useEffect(() => {
     const fetchMyFeeds = async () => {
+      // TODO: 만약 필요하면 useEffect를 두 번 쓰지 말고, 여기서 바로 supabase.auth.getUser() 호출해도 될 듯?
       if (!currentUser) return;
       const { data } = await supabase
         .from('posts')

@@ -1,7 +1,8 @@
-import { FormContainer, TextArea } from "../../style/postCreation/postInputFieldStyle";
+import { FormContainer, TextArea } from '../../style/postCreation/postInputFieldStyle';
 const PostInputField = ({ content, onContentChange }) => {
   return (
     <FormContainer>
+      {/* TODO: label 태그에 대한 설명 추가 */}
       <label htmlFor="content"></label>
       <TextArea
         id="content"

@@ -12,6 +12,8 @@ const PostForm = () => {
   const [image, setImage] = useState(null);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState([]);
+  // TODO: 유저 정보를 관리하는 state가 여기저기 쓰이고 있네요.
+  // 삭제 후 한곳에서 관리하거나 context로 관리하면 좋겠네요.
   const [user, setUser] = useState([]);
   const nav = useNavigate();
 
@@ -63,6 +65,7 @@ const PostForm = () => {
       }
 
       imageUrl = supabase.storage.from('images').getPublicUrl(fileName).data.publicUrl;
+      // TODO: 불필요한 console.log 는 제거하고 문제가 있으면 사용자에게 알리는 것이 좋습니다.
       if (imageUrl) console.log('Generated image URL:', imageUrl); // 이미지 URL 확인용 출력 - 성공
     }
 
@@ -82,6 +85,7 @@ const PostForm = () => {
       nav('/mypage');
     }
 
+    // TODO: 불필요한 console.log 제거
     // 콘솔 출력 - 성공
     console.log('Content:', content);
     console.log('Image:', image);

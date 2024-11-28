@@ -4,6 +4,8 @@ import ProfileImgUpdate from './ProfileImgUpdate';
 import ProfileInputField from './ProfileInputField';
 import { supabase } from '../../supabase/supabaseClient';
 
+// TODO: 이미지 업로드 후 바로 적용되지 않게 하는 것이 좋겠습니다. 미리보기 단계는 저장하지 않는 것이 좋겠네요.
+
 const UpdateProfile = () => {
   // 사용자 데이터와 프로필 이미지 URL 상태 관리
   const [users, setUsers] = useState(null); // 현재 로그인된 사용자 정보를 저장
@@ -96,6 +98,7 @@ const UpdateProfile = () => {
     }
 
     setProfileUrl(''); // 상태 초기화
+    // TODO: 삭제 성공 메세지를 console.log로만 두면 의미가 없어보입니다.
     console.log('프로필 이미지가 성공적으로 삭제되었습니다.');
   };
 

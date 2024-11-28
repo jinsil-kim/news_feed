@@ -20,6 +20,14 @@ function MyFeedUpdate() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // TODO: 초기값을 객체로 변환해보기
+  // ex)
+  // const [values, setValues] = useState({
+  //   content: '',
+  //   imgUrl: '',
+  //   tag: ''
+  // });
+
   const [content, setContent] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const [tag, setTag] = useState('');
@@ -40,7 +48,8 @@ function MyFeedUpdate() {
       }
     };
     getPost();
-  }, []);
+    // TODO: dependency array에 id 추가
+  }, [id]);
 
   const onChangeContent = (e) => {
     setContent(e.target.value);
@@ -59,11 +68,16 @@ function MyFeedUpdate() {
     setTags((prev) => prev.filter((_, idx) => idx !== index));
   };
 
+  // TODO: 스토리지에 바로 올리면 불필요하게 용량이 채워지는 문제가 있음
+  // 하지만 이 방법도 많이 사용은 함
+  // onChange 시에는 화면에만 보이고, 제출 시에 실제 업로드할 수도 있음
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     // 이미지 미리보기용 코드
+    // TODO: 이때 setImagUrl에 들어가는 데이터는 임시 url이라 아래에서 실패하면 잘못된 url이 db에 들어가지는 문제가 있음
+    // 그래서 preview url을 state로 따로 두는 것도 방법
     const reader = new FileReader();
     reader.onload = () => setImgUrl(reader.result); // 미리보기 URL 설정
     reader.readAsDataURL(file);
@@ -87,6 +101,7 @@ function MyFeedUpdate() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    // TODO: data 안쓰면 지우기
     const { data, error } = await supabase
       .from('posts')
       .update({
